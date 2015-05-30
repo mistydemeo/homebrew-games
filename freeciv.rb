@@ -21,8 +21,8 @@ class Freeciv < Formula
 
   option "without-nls", "Disable NLS support"
   option "without-sdl", "Disable the SDL Freeciv client"
-  option "with-gtk+", "Enable the GTK+ Freeciv client"
-  option "without-gtk+3", "Disable the GTK+3 Freeciv client"
+  option "without-gtk+", "Disable the GTK+ Freeciv client"
+  option "with-gtk+3", "Enable the GTK+3 Freeciv client"
 
   depends_on "gettext" if build.with? "nls"
   depends_on "icu4c"
@@ -39,14 +39,14 @@ class Freeciv < Formula
     depends_on "sdl_ttf"
   end
 
-  depends_on "gtk+" => :optional
-  depends_on "gtk+3" => :recommended
+  depends_on "gtk+" => :recommended
+  depends_on "gtk+3" => :optional
   if build.with?("gtk+") || build.with?("gtk+3")
     depends_on "atk"
     depends_on "glib"
     depends_on "pango"
   end
-  depends_on "gdk-pixbuf" if build.with? "gdk+3"
+  depends_on "gdk-pixbuf" if build.with? "gtk+3"
 
   def install
     args = %W[
